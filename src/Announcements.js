@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Announcement from "./Announcement";
+import axios from "axios";
 
 function Announcements() {
     const pageSize = 10;
@@ -9,47 +10,23 @@ function Announcements() {
     const [offset, setOffset] = useState(pageSize);
   
     useEffect(() => {
-      let announceData = [];
-      for (let i = 0; i < pageSize; i++) {
-        announceData.push({
-          id: i,
-          author: 'Some Dude',
-          date: Date().toLocaleString('en-US'),
-          body: `Here is an **announcement body** number ${i}`
+      axios
+        .get(`http://localhost:8000/api/announcements?offset=0&limit=${pageSize}`)
+        .then(response => {
+          setOffset(pageSize);
+          setAnnouncements([...announcements, ...response.data.data.announcements]);
+          setHasMore(true);
         });
-      }
-  
-      const response = {
-        data: {
-          totalCount: 1000,
-          announcements: announceData,
-        }
-      };
-      setOffset(pageSize);
-      setAnnouncements([...announcements, ...response.data.announcements]);
-      setHasMore(true);
     }, []);
   
     const fetchAnnouncements = () => {
-      let announceData = [];
-      for (let i = offset; i < offset + pageSize; i++) {
-        announceData.push({
-          id: i,
-          author: 'Some Dude',
-          date: Date().toLocaleString('en-US'),
-          body: `Here is an **announcement body** number ${i}`
+      axios
+        .get(`http://localhost:8000/api/announcements?offset=${offset}&limit=${pageSize}`)
+        .then(response => {
+          setOffset(offset + pageSize);
+          setAnnouncements([...announcements, ...response.data.data.announcements]);
+          setHasMore(announcements.length < response.data.data.totalCount);
         });
-      }
-  
-      const response = {
-        data: {
-          totalCount: 1000,
-          announcements: announceData,
-        }
-      };
-      setOffset(offset + pageSize);
-      setAnnouncements([...announcements, ...response.data.announcements]);
-      setHasMore(announcements.length < response.data.totalCount);
     }
 
     return (

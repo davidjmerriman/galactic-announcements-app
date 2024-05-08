@@ -1,5 +1,5 @@
 .app {
-  text-align: center;
+  text-align: left;
   height: 100%;
   margin: 0;
   width: 100vw;
@@ -39,6 +39,7 @@
   padding: 10px;
   border-radius: 10px;
   box-shadow: 10px 5px 5px grey;
+  background-color: white;
 }
 
 .announcement h2 {
