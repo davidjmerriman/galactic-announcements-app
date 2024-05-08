@@ -1,0 +1,50 @@
+.app {
+  text-align: center;
+  height: 100%;
+  margin: 0;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  overflow: none;
+}
+
+.header {
+  background-color: #282c34;
+  height: 20vh;
+  flex: 0 1 auto;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.announcements-container {
+  height: 80vh;
+  flex: 0 1 auto;
+  overflow: none;
+}
+
+.announcements-header {
+  height: 10vh;
+}
+
+.scroller {
+  overflow: scroll;
+}
+
+.announcement {
+  min-height: 50px;
+  border: 1px solid grey;
+  margin: 20px;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 10px 5px 5px grey;
+}
+
+.announcement h2 {
+  font-weight: normal;
+}
+
+/* .announcement:nth-child(even) {
+  box-shadow: -10px 5px 5px grey;
+} */
