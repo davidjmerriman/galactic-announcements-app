@@ -15,6 +15,7 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
+  text-align: center;
   color: white;
 }
 
@@ -46,6 +47,7 @@
   font-weight: normal;
 }
 
-/* .announcement:nth-child(even) {
-  box-shadow: -10px 5px 5px grey;
-} */
+.error-container {
+  padding: 20px;
+  text-align: center;
+}
